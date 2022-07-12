@@ -6,7 +6,7 @@ def test_get_method():
 
     assert resp.status_code == 200
 
-    print("This GET Method the status code: " + str(resp.status_code))
+    print("This GET Method status code is: " + str(resp.status_code))
 
 
 def test_post_method():
