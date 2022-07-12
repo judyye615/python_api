@@ -1,0 +1,9 @@
+###### Requirements ######
+requests
+pytest
+pytest-azurepipelines
+pytest-slack
+boto3
+requests-toolbelt
+pytest-html
+sphinx

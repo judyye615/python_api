@@ -1,0 +1,152 @@
+# Python package
+
+trigger:
+- develop
+
+stages:
+- stage: Dev
+  displayName: Dev
+  jobs:
+  - deployment: 
+    environment: dev
+    timeoutInMinutes: 180
+  - job: 'smoke_dev'
+    pool:
+      vmImage: ubuntu-latest
+    strategy:
+      matrix:
+        Python:
+          python.version: '3.8'
+  
+    steps:
+    - task: DownloadSecureFile@1
+      name: AWSCredential
+      displayName: 'Download AWS Credentials'
+      inputs:
+        secureFile: 'credentials.csv'
+
+    - task: AWSShellScript@1
+      inputs:
+        awsCredentials: 'stg'
+        regionName: 'eu-west-1'
+        scriptType: 'inline'
+        inlineScript: |
+          echo Installing $(AWSCredential.secureFilePath) to the trusted directory...
+          sudo chown root:root $(AWSCredential.secureFilePath)
+          sudo chmod a+r $(AWSCredential.secureFilePath)
+          sudo ln -s -t /etc/ssl/certs/ $(AWSCredential.secureFilePath)
+
+          aws configure --profile 'dev' import --csv file://$(AWSCredential.secureFilePath)
+          aws configure set region us-east-1 --profile dev
+          aws configure set output json --profile dev
+          aws configure list
+          aws configure list-profiles
+
+    - task: UsePythonVersion@0
+      inputs:
+        versionSpec: '$(python.version)'
+      displayName: 'Use Python $(python.version)'
+
+    - script: |
+        python -m pip install --upgrade pip
+        pip install pytest pytest-azurepipelines
+        pip install -r requirements.txt
+        pytest -vv -m smoke --env dev --api v2beta1 --level DEBUG
+      displayName: 'pytest - dev'
+      condition: succeededOrFailed()
+
+#Stage Environment
+- stage: Stage
+  displayName: Stage
+  jobs:
+  - deployment: 
+    environment: stage
+    timeoutInMinutes: 180
+  - job: 'smoke_stg'
+    pool:
+      vmImage: ubuntu-latest
+    strategy:
+      matrix:
+        Python:
+          python.version: '3.8'
+  
+    steps:
+    - task: DownloadSecureFile@1
+      name: AWSCredential
+      displayName: 'Download AWS Credentials'
+      inputs:
+        secureFile: 'credentials.csv'
+    - task: AWSShellScript@1
+      inputs:
+        awsCredentials: 'stg'
+        regionName: 'eu-west-1'
+        scriptType: 'inline'
+        inlineScript: |
+          echo Installing $(AWSCredential.secureFilePath) to the trusted directory...
+          sudo chown root:root $(AWSCredential.secureFilePath)
+          sudo chmod a+r $(AWSCredential.secureFilePath)
+          sudo ln -s -t /etc/ssl/certs/ $(AWSCredential.secureFilePath)
+
+          aws configure --profile 'stg' import --csv file://$(AWSCredential.secureFilePath)
+          aws configure set region eu-west-1 --profile stg
+          aws configure set output json --profile stg
+
+    - task: UsePythonVersion@0
+      inputs:
+        versionSpec: '$(python.version)'
+      displayName: 'Use Python $(python.version)'
+
+    - script: |
+        python -m pip install --upgrade pip
+        pip install pytest pytest-azurepipelines
+        pip install -r requirements.txt
+        pytest -vv -m smoke --env stg --api v2beta1 --level DEBUG
+      displayName: 'pytest - stg'
+      condition: succeededOrFailed()
+
+#Production Environment
+- stage: Prod
+  displayName: Prod
+  jobs:
+  - deployment: 
+    environment: prod
+    timeoutInMinutes: 180
+  - job: 'smoke_prod'
+    pool:
+      vmImage: ubuntu-latest
+    strategy:
+      matrix:
+        Python:
+          python.version: '3.8'
+    steps:
+    - task: DownloadSecureFile@1
+      name: AWSCredential
+      displayName: 'Download AWS Credentials'
+      inputs:
+        secureFile: 'credentials.csv'
+    - task: AWSShellScript@1
+      inputs:
+        awsCredentials: 'stg'
+        regionName: 'eu-west-1'
+        scriptType: 'inline'
+        inlineScript: |
+          echo Installing $(AWSCredential.secureFilePath) to the trusted directory...
+          sudo chown root:root $(AWSCredential.secureFilePath)
+          sudo chmod a+r $(AWSCredential.secureFilePath)
+          sudo ln -s -t /etc/ssl/certs/ $(AWSCredential.secureFilePath)
+
+          aws configure --profile 'prod' import --csv file://$(AWSCredential.secureFilePath)
+          aws configure set region eu-west-1 --profile prod
+          aws configure set output json --profile prod
+    - task: UsePythonVersion@0
+      inputs:
+        versionSpec: '$(python.version)'
+      displayName: 'Use Python $(python.version)'
+
+    - script: |
+        python -m pip install --upgrade pip
+        pip install pytest pytest-azurepipelines
+        pip install -r requirements.txt
+        pytest -vv -m smoke --env prod --api v2beta1 --level DEBUG
+      displayName: 'pytest - prod'
+      condition: succeededOrFailed()
