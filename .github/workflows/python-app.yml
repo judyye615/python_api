@@ -31,7 +31,7 @@ jobs:
 
     - name: Test with pytest
       run: |
-        pytest -vv main.py -s --Nunitxml=Nunit/test-output.xml
+        pytest -vv main.py --Nunitxml=Nunit/test-output.xml
 
     - name: Upload pytest test results
       uses: actions/upload-artifact@v3
