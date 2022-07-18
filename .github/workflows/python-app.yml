@@ -39,3 +39,9 @@ jobs:
         name: pytest-results
         path: ./report/report.html
       if: ${{ always() }}
+
+    - name: HTML Preview
+      id: html_preview
+      uses: pavi2410/html-preview-action@v2
+      with:
+        html_file: 'report.html'
