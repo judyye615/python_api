@@ -1,4 +1,7 @@
 ###### Requirements ######
+tesults
+HTMLReport
+junit-xml
 requests
 pytest
 pytest-azurepipelines
