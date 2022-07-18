@@ -34,8 +34,8 @@ jobs:
         pytest -vv main.py -s --Nunitxml=Nunit/test-output.xml
 
     - name: Upload pytest test results
-        uses: actions/upload-artifact@v3
-        with:
-          name: pytest-results-${{ matrix.python-version }}
-          path: Nunit/test-output.xml
-        if: ${{ always() }}
+      uses: actions/upload-artifact@v3
+      with:
+        name: pytest-results-${{ matrix.python-version }}
+        path: Nunit/test-output.xml
+      if: ${{ always() }}
