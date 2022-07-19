@@ -31,7 +31,7 @@ jobs:
 
     - name: Test with pytest
       run: |
-         docker run -e API_TEST="main.py" -e api-test 
+         docker run -e API_TEST="main.py" api-test 
 
     - name: Upload pytest test results
       uses: actions/upload-artifact@v3
