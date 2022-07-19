@@ -31,7 +31,7 @@ jobs:
 
     - name: Test with pytest
       run: |
-        pytest -vv main.py --html=./report/report.html --junit-xml=./report/test-results.xml
+        pytest -vv main.py --html=./report/report.html --junit-xml=./reports/test-results.xml
 
     - name: Upload pytest test results
       uses: actions/upload-artifact@v3
