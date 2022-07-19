@@ -40,7 +40,6 @@ jobs:
       
         path: ./report/
       if: ${{ always() }}
-      working-directory: ./home/docker/code/
 
     - name: Publish Test Results  
       uses: EnricoMi/publish-unit-test-result-action@v1
