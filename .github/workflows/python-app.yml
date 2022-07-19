@@ -37,6 +37,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: pytest-results
+      working-directory: ./home/docker/code/
         path: ./report/
       if: ${{ always() }}
 

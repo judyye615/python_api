@@ -1,3 +1,3 @@
 
 echo "Starting api integration test."
-pytest -vv ${API_TEST} --html=//home/docker/code/reports/report.html
+pytest -vv ${API_TEST} --html=./reports/report.html
