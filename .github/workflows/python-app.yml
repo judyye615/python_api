@@ -32,8 +32,8 @@ jobs:
 
     - name: Test with pytest
       run: |
-
          docker run -e API_TEST="main.py" api-test 
+         docker ps -a
 
     - name: Copy Container file
       run: |
