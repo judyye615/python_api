@@ -35,8 +35,7 @@ jobs:
 
     - name: Upload pytest test results
       uses: actions/download-artifact@v3
-      with:
-        name: report.html
+      run:  docker cp api-test:latest:/file:///home/docker/code/reports/
       if: ${{ always() }}
 
     - name: Publish Test Results  
