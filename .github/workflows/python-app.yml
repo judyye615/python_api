@@ -33,12 +33,17 @@ jobs:
       run: |
          docker run -e API_TEST="main.py" api-test 
 
+    - name: Upload image
+      uses: ishworkh/docker-image-artifact-upload@v1
+      with:
+        image: "api-test:latest"
+
     - name: Upload pytest test results
       uses: actions/upload-artifact@v3
       with:
         name: pytest-results
       
-        path: /reports/
+        path: ./reports/
       if: ${{ always() }}
 
     - name: Publish Test Results  
