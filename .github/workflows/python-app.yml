@@ -38,7 +38,7 @@ jobs:
       with:
         name: pytest-results
       
-        path: ./report/
+        path: /reports/
       if: ${{ always() }}
 
     - name: Publish Test Results  
