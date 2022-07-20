@@ -34,6 +34,9 @@ jobs:
       run: |
 
          docker run -e API_TEST="main.py" api-test 
+
+    - name: Copy Container file
+      run: |
          ID=$(docker ps -aqf "ancestor=api-test")
          docker cp $ID:/home/docker/code/reports ${{ github.workspace }}/reports
 
