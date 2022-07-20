@@ -34,7 +34,7 @@ jobs:
          docker run -e API_TEST="main.py" api-test 
 
     - name: Upload pytest test results
-      run:  docker cp api-test:latest:/var/logs/home/docker/code/reports/ ${{ github.workspace }}/reports
+      run:  docker cp api-test:/home/docker/code/reports/ ${{ github.workspace }}/reports
       if: ${{ always() }}
 
     - name: Publish Test Results  
