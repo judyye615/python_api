@@ -34,7 +34,6 @@ jobs:
          docker run -e API_TEST="main.py" api-test 
 
     - name: Upload pytest test results
-      uses: actions/download-artifact@v3
       run:  docker cp api-test:latest:/file:///home/docker/code/reports/
       if: ${{ always() }}
 
