@@ -34,10 +34,10 @@ jobs:
       run: |
 
          docker run -e API_TEST="main.py" api-test 
-         docker ps -a
+         ID=$(docker ps -aqf "ancestor=api-test")
 
     - name: Upload pytest test results
-      run:  docker cp api-test:/home/docker/code/ ${{ github.workspace }}/reports
+      run:  docker cp $ID:/home/docker/code/ ${{ github.workspace }}/reports
       if: ${{ always() }}
 
 
