@@ -28,10 +28,13 @@ jobs:
     - name: Build Docker Images
       run: |
         docker build -t api-test .
+        
 
     - name: Test with pytest
       run: |
+
          docker run -e API_TEST="main.py" api-test 
+         docker ps -a
 
     - name: Upload pytest test results
       run:  docker cp api-test:/home/docker/code/ ${{ github.workspace }}/reports
