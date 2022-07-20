@@ -6,10 +6,10 @@ RUN yum install -y python-pip
 RUN yum clean all
 
 #WORKDIR /home/docker/code/
-COPY ["docker-entrypoint.sh", "/home/docker/code/"]
+#COPY ["docker-entrypoint.sh", "/home/docker/code/"]
 RUN chmod +x /home/docker/code/docker-entrypoint.sh
 
-COPY ./ ./
+#COPY ./ ./
 RUN pip install -r requirements.txt
 
-ENTRYPOINT ["bash", "/home/docker/code/docker-entrypoint.sh"]
+ENTRYPOINT ["bash", "./docker-entrypoint.sh"]
