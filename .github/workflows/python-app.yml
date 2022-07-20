@@ -35,7 +35,7 @@ jobs:
 
          docker run -e API_TEST="main.py" api-test 
          ID=$(docker ps -aqf "ancestor=api-test")
-         echo -e "docker cp $ID:/home/docker/code/ ${{ github.workspace }}/reports"
+         docker cp $ID:/home/docker/code/ ${{ github.workspace }}/reports
 
     - name: Upload pytest test results
       uses: actions/upload-artifact@v3
