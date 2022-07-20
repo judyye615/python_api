@@ -38,7 +38,10 @@ jobs:
          docker cp $ID:/home/docker/code/ ${{ github.workspace }}/reports
 
     - name: Upload pytest test results
-      run:  docker cp $ID:/home/docker/code/ ${{ github.workspace }}/reports
+      uses: actions/upload-artifact@v3
+      with:
+        name: pytest-results
+        path: ./report/
       if: ${{ always() }}
 
 
