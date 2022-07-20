@@ -34,14 +34,9 @@ jobs:
          docker run -e API_TEST="main.py" api-test 
 
     - name: Upload pytest test results
-      run:  docker cp api-test:./home/docker/code/ ${{ github.workspace }}/reports
+      run:  docker cp api-test:/home/docker/code/ ${{ github.workspace }}/reports
       if: ${{ always() }}
 
-    - name: Publish Test Results  
-      uses: EnricoMi/publish-unit-test-result-action@v1
-      if: always()
-      with:
-        files: "./test-results.xml"
 
 
     
