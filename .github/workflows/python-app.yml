@@ -30,9 +30,15 @@ jobs:
         docker build -t api-test .
         
 
-    - name: Test with pytest
-      run: |
-         docker run -e API_TEST="main.py" api-test 
+    # - name: Test with pytest
+    #   run: |
+    #      docker run -e API_TEST="main.py" api-test 
+
+    - name: Run tests
+      uses: dariocurr/pytest-summary@main
+      with:
+       paths: ./
+       show: all
 
     - name: Copy Container file
       run: |
@@ -48,11 +54,7 @@ jobs:
         if-no-files-found: error
       if: ${{ always() }}
 
-    - name: Upload test summary
-      uses: actions/upload-artifact@v3
-      with:
-        path: ./
-      if: always()
+
 
 
     
