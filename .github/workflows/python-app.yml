@@ -48,6 +48,11 @@ jobs:
         if-no-files-found: error
       if: ${{ always() }}
 
+    - name: Upload test summary
+      uses: actions/upload-artifact@v3
+      with:
+        path: ./
+      if: always()
 
 
     
