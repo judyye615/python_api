@@ -28,11 +28,6 @@ jobs:
     - name: Build Docker Images
       run: |
         docker build -t api-test .
-        
-
-    # - name: Test with pytest
-    #   run: |
-    #      docker run -e API_TEST="main.py" api-test 
 
     - name: Run tests
       uses: dariocurr/pytest-summary@main
@@ -40,6 +35,10 @@ jobs:
        paths: ./
        show: all
 
+    - name: Test with pytest
+      run: |
+         docker run -e API_TEST="main.py" api-test
+          
     - name: Copy Container file
       run: |
          docker ps -aqf "ancestor=api-test"
