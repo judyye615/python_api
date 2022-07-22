@@ -31,8 +31,8 @@ jobs:
 
     - name: Test with pytest
       run: |
-        docker run -e API_TEST="main.py" api-test
-        docker run --workdir ${{ github.workspace }} -v "/home/docker/code":"/github/workflow" api-test
+     
+        docker run --workdir ${{ github.workspace }} --rm -e API_TEST="main.py" api-test -v "/home/docker/code":"/github/workflow" api-test
         
     
     # docker run -e API_TEST="main.py" api-test
@@ -50,6 +50,7 @@ jobs:
         path: ./reports
         if-no-files-found: error
       if: ${{ always() }}
+
 
 
 
