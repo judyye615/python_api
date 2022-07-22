@@ -32,7 +32,8 @@ jobs:
     - name: Test with pytest
       run: |
      
-        docker run -e API_TEST="main.py" api-test --rm  -v "/home/docker/code":"/github/workflow" api-test
+        docker run -e API_TEST="main.py" -v "/home/docker/code":"/github/workflow" api-test
+        docker run --workdir ${{ github.workspace }} --rm "/home/docker/code":"/github/workflow" api-test
         
     
     # docker run -e API_TEST="main.py" api-test
