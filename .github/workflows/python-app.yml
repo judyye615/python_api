@@ -33,6 +33,8 @@ jobs:
       run: |
      
         docker run --workdir ${{ github.workspace }} -e API_TEST="main.py" -v "/home/docker/code":${{ github.workspace }} api-test
+        docker inspect api-test
+
         
     - name: Mounting
       run: |        
