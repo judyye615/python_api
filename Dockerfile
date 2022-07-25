@@ -5,7 +5,7 @@ RUN yum install -y python3
 RUN yum install -y python-pip
 RUN yum clean all
 
-WORKDIR ${{ github.workspace }}
+WORKDIR /home/docker/code/
 COPY ["docker-entrypoint.sh", "/home/docker/code/"]
 RUN chmod +x /home/docker/code/docker-entrypoint.sh
 

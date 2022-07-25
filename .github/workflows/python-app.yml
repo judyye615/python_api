@@ -27,7 +27,7 @@ jobs:
 
     - name: Build Docker Images
       run: |
-        docker build -t api-test .
+        docker build -t api-test . --workdir ${{ github.workspace }}
 
     - name: Test with pytest
       run: |
