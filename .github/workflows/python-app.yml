@@ -31,8 +31,8 @@ jobs:
 
     - name: Test with pytest
       run: |
-        docker run -e API_TEST="main.py" \
-        --mount type=bind,source=/home/docker/code,destination=${{ github.workspace}} api-test
+        docker run -e API_TEST="main.py" api-test
+        ls
 
     - name: Copy Container file
       run: |       
