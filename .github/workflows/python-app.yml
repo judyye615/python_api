@@ -33,7 +33,7 @@ jobs:
       run: |
         docker run -e API_TEST="main.py" api-test
         ls
-        -v "/home/docker/code":"/github/workflow"
+        docker run -v "/home/docker/code":"/github/workflow" api-test
 
     - name: Copy Container file
       run: |       
