@@ -35,10 +35,8 @@ jobs:
 
     - name: Copy Container file
       run: |       
-        docker ps -aqf "ancestor=api-test"
-        ID=$(docker ps -aqf "ancestor=api-test")    
-        docker inspect $ID
-        docker run --name $CONTAINER_NAME --mount type=bind,source=$ID/home/docker/code,destination=${{ github.workspace}} api-test
+
+        docker run --mount type=bind,source=$ID/home/docker/code,destination=${{ github.workspace}} api-test
        
 
 
