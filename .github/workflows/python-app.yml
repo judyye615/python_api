@@ -31,6 +31,10 @@ jobs:
 
     - name: Test with pytest
       run: |
+        docker run -e API_TEST="main.py" api-test
+
+    - name: Copy Container file
+      run: |       
         docker ps -aqf "ancestor=api-test"
         ID=$(docker ps -aqf "ancestor=api-test")    
         docker inspect $ID
