@@ -32,15 +32,13 @@ jobs:
     - name: Test with pytest
       run: |
      
-        docker run -e API_TEST="main.py" api-test 
+        docker run -it -e API_TEST="main.py" api-test 
         
     - name: Mounting
       run: |        
-        docker run -v "/home/docker/code":${{ github.workspace }} api-test 
-        ID=$(docker ps -aqf "ancestor=api-test")
-        docker inspect $ID
-        docker start $ID
-        docker run -e API_TEST="main.py" api-test 
+        docker run -it -v "/home/docker/code":${{ github.workspace }} api-test 
+        docker inspect api-test | grep /reports
+
         
         
     # docker run --workdir ${{ github.workspace }} --rm -v "/home/docker/code":"/github/workflow" api-test
