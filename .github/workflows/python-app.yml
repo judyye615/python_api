@@ -27,13 +27,16 @@ jobs:
 
     - name: Build Docker Images
       run: |
-        docker build -t api-test . --workdir ${{ github.workspace }}
+        docker build -t api-test . 
 
     - name: Test with pytest
       run: |
      
-        docker run -e API_TEST="main.py" -v "/home/docker/code":"/github/workflow" api-test
-        docker run --workdir ${{ github.workspace }} --rm -v "/home/docker/code":"/github/workflow" api-test
+        docker run -v "/home/docker/code":${{ github.workspace }} api-test -e API_TEST="main.py" 
+        
+        
+        
+    # docker run --workdir ${{ github.workspace }} --rm -v "/home/docker/code":"/github/workflow" api-test
         
     
     # docker run -e API_TEST="main.py" api-test
