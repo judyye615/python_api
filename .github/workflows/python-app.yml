@@ -32,7 +32,7 @@ jobs:
     - name: Test with pytest
       run: |
      
-        docker run -it -e API_TEST="main.py" api-test 
+        docker run -e API_TEST="main.py" api-test 
         
     - name: Mounting
       run: |        
