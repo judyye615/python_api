@@ -36,7 +36,7 @@ jobs:
         
     - name: Mounting
       run: |        
-        docker run -it -v "/home/docker/code":${{ github.workspace }} api-test 
+        docker run -v "/home/docker/code":${{ github.workspace }} api-test 
         docker inspect api-test | grep /reports
 
         
