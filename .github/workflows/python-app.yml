@@ -36,7 +36,7 @@ jobs:
         
     - name: Mounting
       run: |        
-        docker run it -v "/home/docker/code":${{ github.workspace }} api-test 
+        docker run -v "/home/docker/code":${{ github.workspace }} api-test 
         ID=$(docker ps -aqf "ancestor=api-test")
         docker inspect $ID
         docker start $ID
