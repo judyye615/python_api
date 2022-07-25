@@ -33,10 +33,7 @@ jobs:
       run: |
         ID=$(docker ps -aqf "ancestor=api-test")      
         docker run --mount type=bind,source=$PWD/$ID/home/docker/code,destination=${{ github.workspace}} api-test
-
-
         docker inspect api-test
-
 
     - name: Mounting
       run: | 
