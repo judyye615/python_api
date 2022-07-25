@@ -31,6 +31,7 @@ jobs:
 
     - name: Test with pytest
       run: |
+        docker ps -aqf "ancestor=api-test"
         ID=$(docker ps -aqf "ancestor=api-test")    
         docker inspect $ID
         docker run --name $CONTAINER_NAME --mount type=bind,source=$ID/home/docker/code,destination=${{ github.workspace}} api-test
