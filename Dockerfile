@@ -14,4 +14,4 @@ RUN pip install -r requirements.txt
 
 ENTRYPOINT ["bash", "/home/docker/code/docker-entrypoint.sh"]
 
-VOLUME ["/home/docker/code","/practice"]
+RUN chmod +x /home/docker/code/Dockerfile2
