@@ -59,7 +59,7 @@ jobs:
     - name: Copy Container file
       run: |
         docker run -e API_TEST="main.py" api-test
-        docker run --mount type=bind,source="$(pwd)",target=${{ github.workspace}} --name service -e API_TEST="main.py" api-test
+        docker run --mount type=bind,source=/reports,target=${{ github.workspace}} --name service -e API_TEST="main.py" api-test
         docker inspect service
 
     - name: Upload pytest test results
