@@ -31,7 +31,7 @@ jobs:
 
     - name: Test with pytest
       run: |
-        docker run -e API_TEST="main.py" -v $(pwd):${{ github.workspace}} api-test
+        docker run --privileged -v $(pwd):${{ github.workspace}} -e API_TEST="main.py" api-test
         docker inspect api-test
        
 
