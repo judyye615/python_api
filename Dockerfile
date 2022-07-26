@@ -14,4 +14,4 @@ RUN pip install -r requirements.txt
 
 ENTRYPOINT ["bash", "/home/docker/code/docker-entrypoint.sh"]
 
-VOLUME [ "/data" ]
+RUN --mount type=bind,source=export,target=${{ github.workspace}}
