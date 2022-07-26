@@ -33,10 +33,12 @@ jobs:
       run: |
         
         docker run --privileged --mount type=bind,source=$(pwd),destination=${{ github.workspace}} -e API_TEST="main.py" api-test
-        docker inspect api-test
-        docker service create \
+        docker inspect api-test.
+    - name: Copy Container file
+      run: |         
+        docker service create
         --mount 'type=bind,source=$(pwd),destination=${{ github.workspace}}'
-        -- name myservice \
+        -- name myservice
         api-test
 
     # - name: Copy Container file
