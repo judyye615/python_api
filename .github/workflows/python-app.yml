@@ -59,9 +59,9 @@ jobs:
     - name: Copy Container file
       run: |
         docker run -e API_TEST="main.py" api-test
-        docker run   --mount type=bind,source="$(pwd)",target=${{ github.workspace}} --name myservice api-test
+        docker run   --mount type=bind,source="$(pwd)",target=${{ github.workspace}} --name service api-test
 
-        docker inspect myservice
+        docker inspect service
 
     - name: Upload pytest test results
       uses: actions/upload-artifact@v3
