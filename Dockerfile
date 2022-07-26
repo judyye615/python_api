@@ -14,4 +14,4 @@ RUN pip install -r requirements.txt
 
 ENTRYPOINT ["bash", "/home/docker/code/docker-entrypoint.sh"]
 
-VOLUME [$(pwd),"${{ github.workspace }}"]
+VOLUME ["/home/docker/code/","${{ github.workspace }}"]
