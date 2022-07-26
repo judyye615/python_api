@@ -33,6 +33,7 @@ jobs:
       run: |
         
         docker run --workdir /home/docker/code -v "/home/docker/code":${{ github.workspace}} --name myservice -e API_TEST="main.py" api-test
+        docker ps  -a
         docker inspect myservice
 
     # - name: Copy Container file
