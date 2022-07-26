@@ -36,10 +36,8 @@ jobs:
 
     - name: Copy Container file
       run: |         
-        docker run -d\
-        -v $(pwd):${{ github.workspace}}
-        --name myservice \
-        api-test
+        docker run -v $(pwd):${{ github.workspace}} --name myservice api-test
+        docker inspect api-test
 
     # - name: Copy Container file
     #   run: |       
