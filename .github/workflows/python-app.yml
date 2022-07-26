@@ -37,7 +37,7 @@ jobs:
     - name: Copy Container file
       run: |         
         docker run -d\
-        --mount type=bind,source=$(pwd),destination=${{ github.workspace}}
+        -mount type=bind,source=$(pwd),destination=${{ github.workspace}}
         --name myservice \
         api-test
 
