@@ -31,14 +31,14 @@ jobs:
 
     - name: Test with pytest
       run: |
-        docker run --privileged -e API_TEST="main.py" api-test
+        docker run --privileged --mount type=bind,source=$(pwd),destination=${{ github.workspace}} -e API_TEST="main.py" api-test
         docker inspect api-test
        
 
-    - name: Copy Container file
-      run: |       
-        docker run --mount type=bind,source=$(pwd),destination=${{ github.workspace}} api-test
-        docker inspect api-test
+    # - name: Copy Container file
+    #   run: |       
+    #     docker run --mount type=bind,source=$(pwd),destination=${{ github.workspace}} api-test
+    #     docker inspect api-test
 
 
 
