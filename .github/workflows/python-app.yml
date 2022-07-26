@@ -33,7 +33,6 @@ jobs:
       run: |
         
         docker run --privileged --mount type=bind,source=$(pwd),destination=${{ github.workspace}} -e API_TEST="main.py" api-test
-        docker volume inspect /home/docker/code/
         docker inspect api-test
         docker service create \
         --mount 'type=bind,source=$(pwd),destination=${{ github.workspace}}'
