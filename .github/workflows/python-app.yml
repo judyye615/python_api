@@ -40,8 +40,7 @@ jobs:
   #   steps:
     - name: Test with pytest
       run: |
-        docker run -v /var/run/docker.sock:/var/run/docker.sock api-test
-        docker run -e API_TEST="main.py" api-test
+        docker run -v /var/run/docker.sock:/var/run/docker.sock -e API_TEST="main.py" api-test
 
 
 #     docker run -w /home/docker/code -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/docker/volumes:${{ github.workspace}} --name myservice -e API_TEST="main.py" api-test
