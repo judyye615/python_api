@@ -25,6 +25,8 @@ jobs:
         python-version: "3.8.0"
 
     - name: Build Docker Images
+      env:
+         DOCKER_BUILDKIT: 1
       run: |
         docker build -t api-test . 
 
