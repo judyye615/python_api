@@ -14,6 +14,7 @@ RUN chmod +x /home/docker/code/docker-entrypoint.sh
 
 COPY ./ ./
 RUN pip install -r requirements.txt
+RUN --mount=type=bind,source=/home/docker/code,target=/home/runner/work/python_api/python_api
 
 ENTRYPOINT ["bash", "/home/docker/code/docker-entrypoint.sh"]
 
