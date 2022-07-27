@@ -70,7 +70,7 @@ jobs:
 
     - name: Copy Container file
       run: |
-      docker build -f Dockerfile2 -t test .
+      docker build -t test . -f Dockerfile2 
       docker inspect service
 # docker run -v /var/run/docker.sock:/var/run/docker.sock api-test
 # docker run -e API_TEST="main.py" api-test
