@@ -30,18 +30,10 @@ jobs:
       run: |
         docker build -t api-test . 
 
-  # test:
-  #   runs-on: ubuntu-latest
-  #   needs: build
-  #   container:
-  #     image: api-test
-  #     volumes:
-  #       - /home/docker/code:${{ github.workspace}}
-  #   steps:
     - name: Test with pytest
       run: |
-        docker run -v /var/run/docker.sock:/var/run/docker.sock -e API_TEST="main.py" api-test
-
+        docker run -v /var/run/docker.sock:/var/run/docker.sock --name myservice -e API_TEST="main.py" api-test
+        docker inspect myservice
 
 #     docker run -w /home/docker/code -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/docker/volumes:${{ github.workspace}} --name myservice -e API_TEST="main.py" api-test
 #        docker inspect myservice
@@ -52,20 +44,6 @@ jobs:
     #   run: |         
     #     docker run --mount type=bind,source=/home/docker/code,destination=${{ github.workspace}} --name myservice api-test
     #     docker inspect myservice
-
-    # - name: Copy Container file
-    #   run: |       
-    #     docker run --mount type=bind,source=$(pwd),destination=${{ github.workspace}} api-test
-    #     docker inspect api-test
-
-
-
-        
-        
-    # docker run --workdir ${{ github.workspace }} --rm -v "/home/docker/code":"/github/workflow" api-test
-        
-    
-    # docker run -e API_TEST="main.py" api-test
 
     - name: Copy Container file
       run: |
