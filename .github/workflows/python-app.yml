@@ -29,11 +29,11 @@ jobs:
       run: |
         docker build -t api-test . 
 
-    # - name: Test with pytest
-    #   run: |
+    - name: Test with pytest
+      run: |
         
-    #     docker run -w /home/docker/code -v /var/run/docker.sock:/var/run/docker.sock -v /home/docker/code:${{ github.workspace}} --name myservice -e API_TEST="main.py" api-test
-    #     docker inspect myservice
+        docker run -w /home/docker/code -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/docker/volumes:${{ github.workspace}} --name myservice -e API_TEST="main.py" api-test
+        docker inspect myservice
 
     # - name: Copy Container file
     # docker run --workdir /home/docker/code --mount type=bind,source=$(pwd),destination=${{ github.workspace}} --name myservice -e API_TEST="main.py" api-test

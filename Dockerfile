@@ -9,9 +9,9 @@ WORKDIR /home/docker/code/
 COPY ["docker-entrypoint.sh", "/home/docker/code/"]
 RUN chmod +x /home/docker/code/docker-entrypoint.sh
 
+VOLUME ["/home/docker/code/","/home/runner/work/python_api/python_api/"]
 COPY ./ ./
 RUN pip install -r requirements.txt
 
 ENTRYPOINT ["bash", "/home/docker/code/docker-entrypoint.sh"]
 
-VOLUME ["/home/docker/code/","/home/runner/work/python_api/python_api/"]
