@@ -38,11 +38,14 @@ jobs:
   #     volumes:
   #       - /home/docker/code:${{ github.workspace}}
   #   steps:
-    # - name: Test with pytest
-    #   run: |
-        
-    #     docker run -w /home/docker/code -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/docker/volumes:${{ github.workspace}} --name myservice -e API_TEST="main.py" api-test
-    #     docker inspect myservice
+    - name: Test with pytest
+      run: |
+        docker run -v /var/run/docker.sock:/var/run/docker.sock api-test
+        docker run -e API_TEST="main.py" api-test
+
+
+#     docker run -w /home/docker/code -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/docker/volumes:${{ github.workspace}} --name myservice -e API_TEST="main.py" api-test
+#        docker inspect myservice
 
     # - name: Copy Container file
     # docker run --workdir /home/docker/code --mount type=bind,source=$(pwd),destination=${{ github.workspace}} --name myservice -e API_TEST="main.py" api-test
@@ -67,10 +70,12 @@ jobs:
 
     - name: Copy Container file
       run: |
-        docker run -v /var/run/docker.sock:/var/run/docker.sock api-test
-        docker run -e API_TEST="main.py" api-test
-        docker run -v /var/run/docker.sock:/var/run/docker.sock --mount type=bind,source=/var/lib/docker/volumes,target=${{ github.workspace}} --name service -api-test
-        docker inspect service
+      docker build -f Dockerfile2 -t test .
+      docker inspect service
+# docker run -v /var/run/docker.sock:/var/run/docker.sock api-test
+# docker run -e API_TEST="main.py" api-test
+# docker run -v /var/run/docker.sock:/var/run/docker.sock --mount type=bind,source=/var/lib/docker/volumes,target=${{ github.workspace}} --name service -api-test
+
 
     - name: Upload pytest test results
       uses: actions/upload-artifact@v3

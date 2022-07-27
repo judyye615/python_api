@@ -1,9 +1,4 @@
-FROM public.ecr.aws/amazonlinux/amazonlinux:latest
+FROM api-test:latest
+RUN --name service
 
-RUN yum update -y
-RUN yum install -y python3
-RUN yum install -y python-pip
-RUN yum clean all
-
-COPY ./ ./
-VOLUME ["/home/docker/code","${{ github.workspace }}"]
+RUN --mount=type=bind,source=/home/docker/code,target=/home/runner/work/python_api/python_api

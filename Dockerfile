@@ -6,8 +6,8 @@ RUN yum install -y python-pip
 RUN yum clean all
 
 WORKDIR /home/docker/code/
-VOLUME ["/home/docker/code/","/home/runner/work/python_api/python_api/"]
-RUN --mount=type=bind,source=/home/docker/code/,target=/home/runner/work/python_api/python_api/
+# VOLUME ["/home/docker/code/","/home/runner/work/python_api/python_api/"]
+
 COPY ["docker-entrypoint.sh", "/home/docker/code/"]
 RUN chmod +x /home/docker/code/docker-entrypoint.sh
 
