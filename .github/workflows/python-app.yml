@@ -30,12 +30,12 @@ jobs:
           include:
             - dockerfile: ./Dockerfile
               image: api-test
-            - dockerfile: ./Dockerfile
+            - dockerfile: ./Dockerfile2
               image: my-test
       env:
          DOCKER_BUILDKIT: 1
-      run: |
-        docker build -t api-test . 
+      # run: |
+      #   docker build -t api-test . 
 
   # test:
   #   runs-on: ubuntu-latest
@@ -77,7 +77,6 @@ jobs:
 
     - name: Copy Container file
       run: |
-
       docker inspect service my-test
 # docker run -v /var/run/docker.sock:/var/run/docker.sock api-test
 # docker run -e API_TEST="main.py" api-test
