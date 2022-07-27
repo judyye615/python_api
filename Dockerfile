@@ -5,11 +5,11 @@ RUN yum install -y python3
 RUN yum install -y python-pip
 RUN yum clean all
 
-WORKDIR /home/runner/work/
+WORKDIR /home/docker/code/
 COPY ["docker-entrypoint.sh", "/home/docker/code/"]
 RUN chmod +x /home/docker/code/docker-entrypoint.sh
 
-VOLUME ["/home/docker/code/","/home/runner/work/python_api/python_api/"]
+# VOLUME ["/home/docker/code/","/home/runner/work/python_api/python_api/"]
 COPY ./ ./
 RUN pip install -r requirements.txt
 
