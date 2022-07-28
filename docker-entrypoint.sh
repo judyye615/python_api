@@ -1,5 +1,5 @@
 
 echo "Starting api integration test."
-export ROOTDIR="/home/docker/code"
+export ROOTDIR=${ROOTDIR}
 
 pytest  -vv ${API_TEST} --html=./reports/report.html
