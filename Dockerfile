@@ -5,14 +5,11 @@ RUN yum install -y python3
 RUN yum install -y python-pip
 RUN yum clean all
 
-WORKDIR ${{ github.workspace}}/
-
-COPY ["docker-entrypoint.sh", ${{ github.workspace}}/]
-RUN chmod +x ${{ github.workspace}}/docker-entrypoint.sh
 
 
 COPY ./ ./
 RUN pip install -r requirements.txt
+RUN chmod +x docker-entrypoint.sh
 
-ENTRYPOINT ["bash", ${{ github.workspace}}/docker-entrypoint.sh"]
+ENTRYPOINT ["bash", "${{ github.workspace}}/docker-entrypoint.sh"]
 
