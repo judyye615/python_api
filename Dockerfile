@@ -11,5 +11,5 @@ COPY ./ ./
 RUN pip install -r requirements.txt
 RUN chmod +x docker-entrypoint.sh
 
-ENTRYPOINT ["bash", "${{ github.workspace}}/docker-entrypoint.sh"]
+ENTRYPOINT ["bash", "/docker-entrypoint.sh"]
 
