@@ -32,7 +32,7 @@ jobs:
 
     - name: Test with pytest
       run: |
-        docker run -w ${{ github.workspace}} --name myservice -e API_TEST="main.py" -e WORKDIR=${{ github.workspace}} api-test
+        docker run -w ${{ github.workspace}}  --privileged -v /var/run/docker.sock:/var/run/docker.sock -v ${{ github.workspace}}:${{ github.workspace}} --name myservice -e API_TEST="main.py" -e WORKDIR=${{ github.workspace}} api-test
         docker inspect myservice
 
 #     docker run -w /home/docker/code -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/docker/volumes:${{ github.workspace}} --name myservice -e API_TEST="main.py" api-test
