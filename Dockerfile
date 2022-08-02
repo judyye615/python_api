@@ -7,7 +7,7 @@ RUN yum clean all
 
 #
 #
-#COPY ./ ./
+COPY ./ ./
 RUN pip install -r requirements.txt
 RUN chmod +x docker-entrypoint.sh
 
