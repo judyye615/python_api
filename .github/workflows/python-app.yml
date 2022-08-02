@@ -45,10 +45,10 @@ jobs:
     #     docker run --mount type=bind,source=/home/docker/code,destination=${{ github.workspace}} --name myservice api-test
     #     docker inspect myservice
 
-    - name: Copy Container file
-      run: |
-        docker run -v /var/run/docker.sock:/var/run/docker.sock --mount type=bind,source=/,target=${{ github.workspace}} --name service api-test
-        docker inspect service 
+    # - name: Copy Container file
+    #   run: |
+    #     docker run -v /var/run/docker.sock:/var/run/docker.sock --mount type=bind,source=/,target=${{ github.workspace}} --name service api-test
+    #     docker inspect service 
 # docker run -v /var/run/docker.sock:/var/run/docker.sock api-test
 # docker run -e API_TEST="main.py" api-test
 
