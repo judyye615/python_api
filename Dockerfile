@@ -5,9 +5,9 @@ RUN yum install -y python3
 RUN yum install -y python-pip
 RUN yum clean all
 
-
-
-COPY ./ ./
+#
+#
+#COPY ./ ./
 RUN pip install -r requirements.txt
 RUN chmod +x docker-entrypoint.sh
 
