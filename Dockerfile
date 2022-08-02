@@ -5,7 +5,6 @@ RUN yum install -y python3
 RUN yum install -y python-pip
 RUN yum clean all
 
-WORKDIR /home/docker/code/
 VOLUME ["/home/docker/code/","/home/runner/work/python_api/python_api/"]
 
 COPY ["docker-entrypoint.sh", "/home/docker/code/"]

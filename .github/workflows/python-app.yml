@@ -32,7 +32,7 @@ jobs:
 
     - name: Test with pytest
       run: |
-        docker run -v /var/run/docker.sock:/var/run/docker.sock --mount type=bind,source="/home/docker/code",target=${{ github.workspace}} --name myservice -e API_TEST="main.py" -e source="/home/docker/code" api-test
+        docker run --mount type=bind,source="/home/docker/code",target=${{ github.workspace}} --name myservice -e API_TEST="main.py" -e source="/home/docker/code" api-test
         docker inspect myservice
 
 #     docker run -w /home/docker/code -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/docker/volumes:${{ github.workspace}} --name myservice -e API_TEST="main.py" api-test
