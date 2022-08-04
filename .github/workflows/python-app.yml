@@ -58,7 +58,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: pytest-results
-        path: ///reports/
+        path: ./reports
         if-no-files-found: error
       if: ${{ always() }}
 
