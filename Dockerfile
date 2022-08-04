@@ -5,7 +5,6 @@ RUN yum install -y python3
 RUN yum install -y python-pip
 RUN yum clean all
 
-VOLUME [ "/data" ]
 COPY docker-entrypoint.sh ./
 RUN chmod +x docker-entrypoint.sh
 
