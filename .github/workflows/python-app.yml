@@ -30,10 +30,10 @@ jobs:
       run: |
         docker build -t api-test . 
       working-directory: ${{ github.workspace }}
-      
+
     - name: Test with pytest
       run: |
-        docker run -v "/var/run/docker.sock":"/var/run/docker.sock" -v "/home/runner/work/_temp/_github_home":"/github/home" -v "/home/runner/work/_temp/_github_workflow":"/github/workflow" -v "/home/runner/work/_temp/_runner_file_commands":"/github/file_commands" -v "/home/runner/work/":"/github/workspace" --name myservice -e API_TEST="main.py" api-test
+        docker run -v "/var/run/docker.sock":"/var/run/docker.sock" -v "/home/runner/work/_temp/_github_home":"/github/home" -v "/home/runner/work/_temp/_github_workflow":"/github/workflow" -v "/home/runner/work/_temp/_runner_file_commands":"/github/file_commands" -v "/home/runner/work/":"/github/workspace" -v "/var/lib/docker/":"/github/workspace" --name myservice -e API_TEST="main.py" api-test
         docker inspect myservice
       working-directory: ${{ github.workspace }}
 #     docker run -w /home/docker/code -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/docker/volumes:${{ github.workspace}} --name myservice -e API_TEST="main.py" api-test
