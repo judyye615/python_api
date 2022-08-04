@@ -16,7 +16,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    env:
+       working-directory: ${{ github.workspace }}
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python 3.8.0
@@ -29,13 +30,13 @@ jobs:
          DOCKER_BUILDKIT: 1
       run: |
         docker build -t api-test . 
-      working-directory: ${{ github.workspace }}
+
 
     - name: Test with pytest
       run: |
         docker run -v "/var/run/docker.sock":"/var/run/docker.sock" -v "/var/lib/docker/":"/github/workspace" --name myservice -e API_TEST="main.py" api-test
         docker inspect myservice
-      working-directory: ${{ github.workspace }}
+
 #     docker run -w /home/docker/code -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/docker/volumes:${{ github.workspace}} --name myservice -e API_TEST="main.py" api-test
 #        docker inspect myservice
 
