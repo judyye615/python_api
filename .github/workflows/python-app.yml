@@ -53,6 +53,9 @@ jobs:
 # docker run -v /var/run/docker.sock:/var/run/docker.sock api-test
 # docker run -e API_TEST="main.py" api-test
 
+    - name: Checkout
+      uses: actions/checkout@v2
+      run: cp ///reports/
 
     - name: Upload pytest test results
       uses: actions/upload-artifact@v3
