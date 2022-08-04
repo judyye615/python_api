@@ -54,7 +54,7 @@ jobs:
 # docker run -e API_TEST="main.py" api-test
 
     - name: Checkout
-      run: cp .//reports/
+      run: cp ///reports/ reports
 
     - name: Upload pytest test results
       uses: actions/upload-artifact@v3
