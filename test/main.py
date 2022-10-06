@@ -1,6 +1,7 @@
 import pytest
 import requests
 
+
 @pytest.mark.smoke
 def test_get_method():
     resp = requests.get("https://reqres.in/api/users?page=2")
@@ -18,4 +19,3 @@ def test_post_method():
                          )
     assert resp.status_code == 201
     print("This POST Method status code is: " + str(resp.status_code))
-
