@@ -11,6 +11,7 @@ def test_get_method():
     print("This GET Method status code is: " + str(resp.status_code))
 
 
+
 def test_post_method():
     resp = requests.post("https://reqres.in/api/users",
                          json={"name": "morpheus",
