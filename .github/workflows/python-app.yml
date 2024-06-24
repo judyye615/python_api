@@ -31,7 +31,7 @@ jobs:
             -X POST \
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer ${{secrets.PAT}}" \
-            https://api.github.com/repos/$repo_owner/$repo_name/dispatches \
+            https://api.github.com/repos/$repo_owner/$repo_name \
             -d "{\"event_type\": \"$event_type\", \"client_payload\": {\"service\": \"$service\", \"unit\": false, \"integration\": true}}"
 
       - name: Set up Python 3.10
@@ -42,7 +42,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install flake8 pytest
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; 
     
       - name: Test with pytest
         run: |
