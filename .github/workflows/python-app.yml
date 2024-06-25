@@ -18,7 +18,7 @@ jobs:
           repo_owner="judyye615" 
           repo_name="ADO_Artifact_Map"  
           curl -L \
-          -X POST \ "https://api.github.com/repos/judyye615/ADO_Artifact_Map/actions/workflows/maven.yml/dispatches" \
+          -X POST \ "https://api.github.com/repos/judyye615/ADO_Artifact_Map/dispatches" \
           -H "Accept: application/vnd.github.v3+json" \
           -H "Content-Type: application/json" \
           -H "Authorization: token ${{ secrets.PAT }}" \
