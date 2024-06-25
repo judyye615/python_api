@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        repo: ['judyye615@github.com/judyye615/ADO_Artifact_Map']
+        repo: ['judyye615/ADO_Artifact_Map']
 
 
     steps:
