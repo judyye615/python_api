@@ -1,0 +1,42 @@
+{
+  "023c5df999aa35d0ce9ebafad888e4d8" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 1,
+      "skipped" : 0,
+      "passed" : 0,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "763c95b1ccc69f05",
+      "status" : "broken",
+      "statusDetails" : "requests.exceptions.SSLError: HTTPSConnectionPool(host='reqres.in', port=443): Max retries exceeded with url: /api/users (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1000)')))",
+      "time" : {
+        "start" : 1725904964530,
+        "stop" : 1725904964600,
+        "duration" : 70
+      }
+    } ]
+  },
+  "fcd6de436c5ecc9d79587c94f917e1da" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 1,
+      "skipped" : 0,
+      "passed" : 0,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "a734b4d9eb6ea725",
+      "status" : "broken",
+      "statusDetails" : "requests.exceptions.SSLError: HTTPSConnectionPool(host='reqres.in', port=443): Max retries exceeded with url: /api/users?page=2 (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1000)')))",
+      "time" : {
+        "start" : 1725904964203,
+        "stop" : 1725904964365,
+        "duration" : 162
+      }
+    } ]
+  }
+}

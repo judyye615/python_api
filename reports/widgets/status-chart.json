@@ -1,0 +1,21 @@
+[ {
+  "uid" : "a734b4d9eb6ea725",
+  "name" : "test_get_method",
+  "time" : {
+    "start" : 1725904964203,
+    "stop" : 1725904964365,
+    "duration" : 162
+  },
+  "status" : "broken",
+  "severity" : "normal"
+}, {
+  "uid" : "763c95b1ccc69f05",
+  "name" : "test_post_method",
+  "time" : {
+    "start" : 1725904964530,
+    "stop" : 1725904964600,
+    "duration" : 70
+  },
+  "status" : "broken",
+  "severity" : "normal"
+} ]
